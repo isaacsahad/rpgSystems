@@ -1,11 +1,11 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     var player = {
         level: 0,
         gold: 0,
         experience1: 0,
         experience2: 0,
-        
+
         outerHead: {},
         innerHead: {},
         outerChest: {},
@@ -74,15 +74,32 @@ $(document).ready(function() {
         nerfTrueDmg: 0,
     }
 
-    var Health = 100*player.level.buffHealth + player.totalHealth - player.nerfHealth;
-    var Mana = 100*player.level.buffMana + player.totalMana - player.nerfMana;
-    var Stamina = 100*player.level.buffStamina + player.totalStamina - player.nerfStamina;
-    var Dodge = 100*player.level.buffDodge + player.totalDodge - player.nerfDodge;
-    var Critical = 100*player.level.buffCritical + player.totalCritical - player.nerfCritical;
-    var Lifesteal = 100*player.level.buffLifesteal + player.totalLifesteal - player.nerfLifesteal;
-    var SpellPwr = 100*player.level.buffSpellPwr + player.totalSpellPwr - player.nerfSpellPwr;
-    var HealPwr = 100*player.level.buffHealPwr + player.totalHealPwr - player.nerfHealPwr;
-    var TrueDmg = 100*player.level.buffTrueDmg + player.totalTrueDmg - player.nerfTrueDmg;
- 
+    var rawHealth = math.ceiling(statConstitution * 0.2 );
+    var rawMana = math.ceiling(statIntelligence * 0.2 );
+    var rawStamina = math.ceiling((statStrength + statDexterity + statConstitution) * 0.2 );
+    var rawDodge = math.ceiling((statStrength + statDexterity + statWisdom) * 0.2 );
+    var rawCritical = math.ceiling(statStrength * 0.2 );
+    var rawLifesteal = math.floor(trueFinal);
+    var rawSpellPwr = math.ceiling(statIntelligence + statWisdom * 0.2 );
+    var rawHealPwr = math.ceiling(statIntelligence + statWisdom * 0.2 );
+    var rawTrueDmg = math.ceiling((statStrength + statDexterity + statWisdom) * 0.2 );
+
+    var Health = 100 * player.level.buffHealth + player.totalHealth + player.rawHealth - player.nerfHealth;
+    var Mana = 100 * player.level.buffMana + player.totalMana + player.rawMana - player.nerfMana;
+    var Stamina = 100 * player.level.buffStamina + player.totalStamina + player.rawStamina - player.nerfStamina;
+    var Dodge = 100 * player.level.buffDodge + player.totalDodge - player.nerfDodge;
+    var Critical = 100 * player.level.buffCritical + player.totalCritical - player.nerfCritical;
+    var Lifesteal = 100 * player.level.buffLifesteal + player.totalLifesteal - player.nerfLifesteal;
+    var SpellPwr = 100 * player.level.buffSpellPwr + player.totalSpellPwr - player.nerfSpellPwr;
+    var HealPwr = 100 * player.level.buffHealPwr + player.totalHealPwr - player.nerfHealPwr;
+    var TrueDmg = 100 * player.level.buffTrueDmg + player.totalTrueDmg - player.nerfTrueDmg;
+
+    var currentHealth;
+    var currentMana;
+    var currentStamina;
 }
-}
+
+var itemname = "";
+var itemslotnames = ["Helmet", "Ring", "Shoulder", "Body Armor", "Leg Armor", "Gloves", "Primary Hand", "Off Hand", "Boots", "Accessory 1", "Accessory 2", "Accessory 3", "Accessory 4", "Accessory 5", "Accessory 6", "Amulet", "Ring 1", "Ring 2", "Ring 3", "Ring 4", "Ring 5", "Ring 6", "Ring 7", "Ring 8", "Ring 9", "Ring 10"];
+
+var affixes 
